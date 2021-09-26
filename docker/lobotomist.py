@@ -1,10 +1,10 @@
 import discord
 import requests
-import argparse
 import random
 import time
 import json
 import re
+import os
 
 class MyClient(discord.Client):
     async def on_connect(self):
