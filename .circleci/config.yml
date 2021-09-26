@@ -1,0 +1,37 @@
+version: 2.1
+
+workflows:
+  sample:  # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run. 
+    # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows 
+    jobs:
+      - build-and-test
+
+jobs:
+  build-and-push: 
+    working_directory: /app
+    docker:
+      - image: docker:latest
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: install dependencies
+          command: : |
+            apk add --no-cache \
+              py-pip
+            pip install \
+              doctl
+      - run:
+          name: build
+          command: |
+            cd ./docker
+            docker build -t lobotomist .
+      - run: 
+          name: push
+          command: |
+            doctl registry login
+            docker tag lobotomist registry.digitalocean.com/medheav/lobotomist:latest
+            docker push registry.digitalocean.com/medheav/lobotomist:latest
+
