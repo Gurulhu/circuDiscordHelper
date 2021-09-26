@@ -7,7 +7,7 @@ workflows:
 
 jobs:
   build-and-push: 
-    working_directory: /app
+    working_directory: /tmp/app
     docker:
       - image: digitalocean/doctl:latest
         environment:
