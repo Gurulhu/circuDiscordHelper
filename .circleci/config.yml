@@ -10,8 +10,8 @@ jobs:
     working_directory: /app
     docker:
       - image: digitalocean/doctl:latest
-      - environment:
-        - DIGITALOCEAN_ACCESS_TOKEN: $DIGITALOCEAN_TOKEN
+        environment:
+          DIGITALOCEAN_ACCESS_TOKEN: $DIGITALOCEAN_TOKEN
     steps:
       - checkout
       - setup_remote_docker
