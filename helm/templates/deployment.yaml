@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: {{ include "..fullname" . }}
   labels:
+    type: bot
+    target: discord
+    repo: https://github.com/Gurulhu/circuDiscordHelper
     {{- include "..labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
