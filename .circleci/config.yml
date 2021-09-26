@@ -9,9 +9,9 @@ jobs:
   build-and-push: 
     working_directory: /tmp/app
     docker:
-      - image: digitalocean/doctl:latest
+      - image: docker:latest
         environment:
-          DIGITALOCEAN_ACCESS_TOKEN: $DIGITALOCEAN_TOKEN
+          DIGITALOCEAN_TOKEN: $DIGITALOCEAN_TOKEN
     steps:
       - checkout
       - setup_remote_docker
@@ -23,7 +23,7 @@ jobs:
       - run: 
           name: push
           command: |
-            doctl registry login
+            docker login -u $DIGITALOCEAN_TOKEN -p $DIGITALOCEAN_TOKEN registry.digitalocean.com
             docker tag lobotomist registry.digitalocean.com/medheav/lobotomist:latest
             docker push registry.digitalocean.com/medheav/lobotomist:latest
 
