@@ -1,0 +1,29 @@
+version: 2.1
+
+workflows:
+  build-and-push:
+    jobs:
+      - build-and-push
+
+jobs:
+  build-and-push: 
+    working_directory: /tmp/app
+    docker:
+      - image: docker:latest
+        environment:
+          DIGITALOCEAN_TOKEN: $DIGITALOCEAN_TOKEN
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: build
+          command: |
+            cd ./docker
+            docker build -t lobotomist .
+      - run: 
+          name: push
+          command: |
+            docker login -u $DIGITALOCEAN_TOKEN -p $DIGITALOCEAN_TOKEN registry.digitalocean.com
+            docker tag lobotomist registry.digitalocean.com/medheav/lobotomist:latest
+            docker push registry.digitalocean.com/medheav/lobotomist:latest
+
