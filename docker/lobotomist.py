@@ -92,9 +92,7 @@ class MyClient(discord.Client):
         for card in self.cardSearchPattern.findall( message.content ):
             await message.channel.send( await self.findMatches( card ) )
 
-parser = argparse.ArgumentParser()
-parser.add_argument("token", type=str)
 
-args = parser.parse_args()
+
 client = MyClient( guild_subscriptions=True )
-client.run(args.token)
+client.run( os.getenv("DISCORD_TOKEN") )
