@@ -9,7 +9,7 @@ jobs:
   build-and-push: 
     working_directory: /app
     docker:
-      - image: digitalocean/doctl
+      - image: digitalocean/doctl:latest
       - environment:
         - DIGITALOCEAN_ACCESS_TOKEN: $DIGITALOCEAN_TOKEN
     steps:
