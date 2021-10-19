@@ -14,4 +14,7 @@ config :lobotomist,
     "%s, you've found this place only because you were summoned. Pray you're worthy of the invitation.",
     "Welcome back %s. You may not remember last time."
   ],
-  primer: "ablabluble"
+  primer: "Currently, we're working with two main lists:
+Dad Bog's https://www.moxfield.com/decks/Uf3lTRHBuUqTbu4NnT0KAA
+and
+Winterhell's https://www.moxfield.com/decks/5PGTOmfq5EKb1UGxEH5yAQ"
