@@ -18,7 +18,6 @@ jobs:
       - run:
           name: build
           command: |
-            cd ./docker
             docker build -t lobotomist .
       - run:
           name: push
